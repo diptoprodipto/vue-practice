@@ -21,7 +21,7 @@
             </el-table-column>
             <el-table-column
                 fixed="right"
-                label="Operations"
+                label="Delete"
                 width="120">
               <template slot-scope="scope">
                 <el-button
@@ -34,7 +34,7 @@
             </el-table-column>
             <el-table-column
                 fixed="right"
-                label="Operations"
+                label="Update"
                 width="120">
               <template slot-scope="scope">
                 <el-button
@@ -43,6 +43,8 @@
                     size="small">
                   Edit
                 </el-button>
+
+<!--                <router-link :to="'update/'+scope.$index" tag="el-button" >Update</router-link>-->
               </template>
             </el-table-column>
         </el-table>
@@ -65,7 +67,9 @@
           <el-button type="primary" @click="updateRow">Confirm</el-button>
         </span>
       </el-dialog>
+
     </el-container>
+
 </template>
 
 <script>
@@ -101,18 +105,27 @@
           deleteRow(index){
             this.tableData.splice(index, 1)
           },
-          editRow(index, row){
-            this.dialogVisible = true
-            this.rowIndex = index
-            let filteredData = this.tableData.filter(data => data.name === row.name && data.city === row.city && data.country === row.country)
-            this.name = filteredData[0].name
-            this.city = filteredData[0].city
-            this.country = filteredData[0].country
-          },
+          // editRow(index, row){
+          //   this.dialogVisible = true
+          //   this.rowIndex = index
+          //   let filteredData = this.tableData.filter(data => data.name === row.name && data.city === row.city && data.country === row.country)
+          //   this.name = filteredData[0].name
+          //   this.city = filteredData[0].city
+          //   this.country = filteredData[0].country
+          // },
           updateRow(){
             this.tableData.splice(this.rowIndex, 1, {name: this.name, city: this.city, country: this.country})
             this.dialogVisible = false
+          },
+          editRow(index, row){
+            this.$router.push({name: "update", params: { tableData: this.tableData, index: index, row: row}})
           }
+        },
+        created(){
+          if(this.$route.params.tableData){
+            this.tableData = this.$route.params.tableData
+          }
+
         }
     }
 </script>
