@@ -32,10 +32,12 @@ export default {
       this.$router.push({name: "Home", params: { selectedRow: this.selectedRow, index: this.rowIndex, tableData: this.tableData }})
     }
   },
-  mounted(){
-    this.tableData = this.$route.params.tableData
-    this.selectedRow = this.$route.params.row
+  created() {
     this.rowIndex = this.$route.params.index
+    this.selectedRow = this.$route.params.selectedRow
+    this.tableData = this.$route.params.tableData
+
+    console.log(this.tableData)
   }
 }
 </script>

@@ -37,14 +37,16 @@
                 label="Update"
                 width="120">
               <template slot-scope="scope">
-                <el-button
-                    @click="editRow(scope.$index, scope.row)"
-                    type="text"
-                    size="small">
-                  Edit
-                </el-button>
+<!--                <el-button-->
+<!--                    @click="editRow(scope.$index, scope.row)"-->
+<!--                    type="text"-->
+<!--                    size="small">-->
+<!--                  Edit-->
+<!--                </el-button>-->
 
 <!--                <router-link :to="'update/'+scope.$index" tag="el-button" >Update</router-link>-->
+
+                <router-link :to="{ name: 'update', params: { index: scope.$index, selectedRow: scope.row, tableData: tableData } }" tag="el-button" >Update</router-link>
               </template>
             </el-table-column>
         </el-table>
