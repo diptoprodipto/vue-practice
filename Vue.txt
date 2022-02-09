@@ -1,0 +1,197 @@
+=========== v-text directive ==================
+
+<template>
+ <div v-text="channel"></div> //Output: Coding
+</template>
+.....
+data(){
+ return {
+   channel: 'Coding',
+ };
+}
+
+=========== Binding HTML =====================
+
+<template>
+ <div v-html="name"></div> //Output: Coding
+</template>
+.....
+data(){
+ return {
+   name: 'Spiderman',
+ };
+}
+
+=========== Binding to Attributes ============
+
+<template>
+ <h2 v-bind:id="headingId">Hello</h2>
+ <button v-bind:disabled="isDisabled">Click</button>
+</template>
+.....
+data(){
+ return {
+   headingId: 'firstHeading',
+   isDisabled: true,
+ };
+}
+
+=========== Binding Classes ====================
+
+<template>
+ <h2 class="underline" v-bind:class="headingClass">Hello</h2>
+ <h2 v-bind:class="isPromoted && 'promoted'">Hello</h2>
+ <h2 v-bind:class="isSoldout ? 'sold-out':'new'">Hello</h2>
+ <h2 v-bind:class="['new', 'promoted']">Hello</h2>
+ <h2 v-bind:class="{
+	promoted: isPromoted,
+	new: !isSoldout,
+	'sold-out': isSoldout
+ }">Hello</h2>
+</template>
+.....
+
+<style>
+.promoted{}
+.new{}
+.sold-out{}
+</style>
+
+============ Binding Styles ====================
+
+<template>
+ <h2 v-bind:style="{
+ 	color: highlightColor,
+ 	fontSize: headerSize + 'px',
+ 	padding: '20px'
+ }"
+ >Hello</h2>
+ <h2 v-bind:style="headerStyleObject">Hello</h2>
+ <h2 v-bind:style="[successStyleObject, dangerStyleObject]">Hello</h2>
+</template>
+.....
+data(){
+ return {
+   highlightColor: 'orange',
+   headerSize: 50,
+   headerStyleObject: {
+   	color: 'orange',
+   	fontSize: '50px',
+   },
+   successStyleObject: {
+   	...
+   }
+ };
+}
+
+================ Conditional Rendering =================
+
+<template>
+ <h2 v-if="num === 0">Zero</h2>
+ <h2 v-else-if="num < 0">Negative</h2>
+ <h2 v-else-if="num > 0">Positive</h2>
+ <h2 v-else>Not a number</h2>
+ 
+ <template v-if="display">
+  <h2>Hello</h2>
+  <h2>Hello</h2>
+ </template>
+</template>
+.....
+data(){
+ return {
+   num: 0,
+   display: true,
+ };
+}
+
+===================== v-show directive =================
+
+<template>
+ <h2 v-show="showElement">Zero</h2>
+ <h2 v-if="showElement">Zero</h2> // It won't be present in the DOM if showElement === false
+ 
+</template>
+.....
+data(){
+ return {
+   showElement: true
+ };
+}
+
+===================== v-for directive ==================
+<h2 v-for="(name, index) in names" :key="name">{{ index }} {{ name }}</h2>
+<h2 v-for="name in fullNames" :key="name.first">
+ {{ name.first }} {{ name.last }}
+</h2>
+<div v-for="actor in actors" :key="actor.name">
+ <h2>{{ actor.name }}</h2>
+<h3 v-for="movie in actor.movies" :key="movie">{{ movie }}</h3>
+</div>
+<h2 v-for="(value, key, index) in myInfo" :key="value">
+ {{ index }} {{ key }} {{ value }}
+</h2>
+<template v-for="name in names" :key="name">
+ <h2>{{ name }}</h2>
+<hr />
+</template>
+<template v-for="name in names" :key="name">
+ <h2 v-if="name === 'Bruce'">{{ name }}</h2>
+</template>
+...
+names: ['Bruce', 'Clark', 'Diana'],
+      fullNames: [
+        { first: 'Bruce', last: 'Wayne' },
+        { first: 'Clark', last: 'Kent' },
+        { first: 'Princess', last: 'Diana' },
+      ],
+      actors: [
+        {
+          name: 'Christian Bale',
+          movies: ['Batman', 'American Psycho'],
+        },
+        {
+          name: 'Di Caprio',
+          movies: ['Titanic', 'Inception'],
+        },
+      ],
+      myInfo: {
+        name: 'Vishwas',
+        channel: 'Codevolution',
+        course: 'Vue 3',
+      },
+      
+==================== Conditional List Rendering ================
+
+<template>
+	<template v-for="name in names" :key="name">
+		<h2 v-if="name === 'Bruce'">{{ name }}</h2>
+	</template>
+</template>
+
+==================== v-on directive ============================
+
+<h2>{{ count }} 
+
+<button v-on:click="name = 'Spiderman'">Change name</button>
+.....
+data(){
+ return {
+   name: Dipto
+ };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
